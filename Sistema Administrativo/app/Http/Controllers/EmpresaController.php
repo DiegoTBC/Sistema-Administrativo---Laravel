@@ -12,11 +12,17 @@ class EmpresaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $empresas = Empresa::paginate(10);
 
-        return view('empresa.index', compact('empresas'));
+        $tipo = $request->tipo;
+        if ($tipo !== 'cliente' && $tipo !== 'fornecedor') {
+            return abort(404);
+        }
+
+        $empresas = Empresa::todasPorTipo($tipo);
+
+        return view('empresa.index', compact('empresas', 'tipo'));
     }
 
     /**
