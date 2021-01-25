@@ -22,14 +22,9 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div id="app" class="wrapper">
 
-            <div class="content-wrapper">
-
-                <section class="content">
-
-                    <div class="container-fluid">
-                    @yield('content')
-                </section>
-            </div>
+        <section>
+            @yield('content')
+        </section>
 
     </div>
 </body>
