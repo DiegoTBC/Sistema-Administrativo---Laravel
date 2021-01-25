@@ -48,6 +48,8 @@ class EmpresaController extends Controller
      */
     public function store(Request $request)
     {
+        $empresa = Empresa::create($request->except('_token'));
+        dd($empresa);
     }
 
     /**
