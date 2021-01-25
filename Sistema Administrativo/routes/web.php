@@ -18,3 +18,4 @@ Route::get('/', 'Auth\LoginController@showLoginForm');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('empresas', 'EmpresaController');
