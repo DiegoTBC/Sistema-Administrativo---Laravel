@@ -94,8 +94,14 @@ class EmpresaController extends Controller
      * @param  \App\Empresa  $empresa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Empresa $empresa)
+    public function destroy(Empresa $empresa, Request $request)
     {
-        //
+        $tipo = $request->tipo;
+        if ($tipo !== 'cliente' && $tipo !== 'fornecedor') {
+            return abort(404);
+        }
+
+        $empresa->delete();
+        return redirect()->route('empresas.index', ['tipo' => $tipo]);
     }
 }
