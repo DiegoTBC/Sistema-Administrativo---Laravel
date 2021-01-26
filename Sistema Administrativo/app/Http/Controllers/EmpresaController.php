@@ -72,7 +72,7 @@ class EmpresaController extends Controller
      */
     public function edit(Empresa $empresa)
     {
-        //
+        return view('empresa.edit', compact('empresa'));
     }
 
     /**

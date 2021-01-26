@@ -1,5 +1,4 @@
 @csrf
-<input type="hidden" name="tipo" value="{{ $tipo }}">
 
 <div class="form-group row">
     <label for="nome" class="col-form-label col-sm-2 required">Nome*</label>
