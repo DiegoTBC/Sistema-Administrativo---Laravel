@@ -10,7 +10,7 @@ class Empresa extends Model
     protected $fillable = ['tipo', 'nome', 'razao_social', 'documento', 'ie_rg',
         'nome_contato', 'celular', 'email', 'telefone', 'cep', 'logradouro',
         'bairro', 'cidade', 'estado', 'observacao'];
-    
+
     public static function todasPorTipo(string $tipo, int $quantidade=10): AbstractPaginator
     {
 

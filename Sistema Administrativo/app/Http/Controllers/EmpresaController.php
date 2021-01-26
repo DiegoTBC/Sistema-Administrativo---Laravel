@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Empresa;
+use App\Http\Requests\EmpresaRequest;
 use Illuminate\Http\Request;
 
 class EmpresaController extends Controller
@@ -46,10 +47,10 @@ class EmpresaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmpresaRequest $request)
     {
         $empresa = Empresa::create($request->except('_token'));
-        dd($empresa);
+        return redirect()->route('empresas.show', $empresa->id);
     }
 
     /**
