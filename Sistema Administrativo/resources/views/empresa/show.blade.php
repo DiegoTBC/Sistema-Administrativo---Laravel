@@ -31,18 +31,27 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <strong>Razão Social</strong>: {{$empresa->razao_social}} <br>
-                            <strong>CNPJ/CPF</strong>: {{$empresa->documento}} <br>
+
+                            <strong>CNPJ/CPF</strong>:
+                            @if(strlen($empresa->documento) === 11)
+                                                           {{mascara($empresa->documento, '###.###.###-##')}}
+                            @else
+                                                           {{mascara($empresa->documento, '###.###.###/####-##')}}
+                            @endif
+                                <br>
+
+
                             <strong>IE/RG</strong>: {{$empresa->ie_rg}} <br>
                             <strong>Observações</strong>: {{$empresa->observacoes}} <br>
                         </div>
                         <div class="col-sm-6">
                             <address>
                                 {{$empresa->logradouro}}, {{$empresa->bairro}} <br>
-                                {{$empresa->cidade}}/{{$empresa->estado}} - {{$empresa->cep}}<br>
+                                {{$empresa->cidade}}/{{$empresa->estado}} - {{mascara($empresa->cep, '#####-####')}}<br>
                                 <strong>Nome Contato:</strong> {{$empresa->nome_contato}} <br>
-                                <strong>Celular:</strong> {{$empresa->celular}} <br>
-                                <strong>Email:</strong> {{$empresa->email}} <br>
-                                <strong>Telefone:</strong> {{$empresa->estado}}
+                                <strong>Celular:</strong> {{mascara($empresa->celular, '(##) # ####-####')}} <br>
+                                <strong>Telefone:</strong> {{mascara($empresa->telefone, '(##) ####-####')}} <br>
+                                <strong>Email:</strong> {{$empresa->email}}
                             </address>
                         </div>
                     </div>
