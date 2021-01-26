@@ -82,9 +82,10 @@ class EmpresaController extends Controller
      * @param  \App\Empresa  $empresa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Empresa $empresa)
+    public function update(EmpresaRequest $request, Empresa $empresa)
     {
-        //
+        $empresa->update($request->all());
+        return redirect()->route('empresas.show', $empresa);
     }
 
     /**

@@ -25,7 +25,7 @@
 
                 <div class="card-body">
                     <form action="{{route('empresas.update', $empresa)}}" method="post">
-                        @method('put')
+                        @method('PUT')
 
                         @include('empresa.form')
                     </form>
