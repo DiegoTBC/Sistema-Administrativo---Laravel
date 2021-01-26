@@ -5,20 +5,19 @@ namespace App\Http\Controllers;
 use App\Empresa;
 use App\Http\Requests\EmpresaRequest;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\Response;
 
 class EmpresaController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return View
      */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $tipo = $request->tipo;
-        if ($tipo !== 'cliente' && $tipo !== 'fornecedor') {
-            return abort(404);
-        }
+        $this->validaTipo($tipo);
 
         $empresas = Empresa::todasPorTipo($tipo);
 
@@ -26,82 +25,81 @@ class EmpresaController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return View
      */
-    public function create(Request $request)
+    public function create(Request $request): View
     {
         $tipo = $request->tipo;
-        if ($tipo !== 'cliente' && $tipo !== 'fornecedor') {
-            return abort(404);
-        }
+        $this->validaTipo($tipo);
 
         return view('empresa.create', compact('tipo'));
 
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param EmpresaRequest $request
+     * @return Response
      */
-    public function store(EmpresaRequest $request)
+    public function store(EmpresaRequest $request): Response
     {
         $empresa = Empresa::create($request->except('_token'));
         return redirect()->route('empresas.show', $empresa->id);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Empresa  $empresa
-     * @return \Illuminate\Http\Response
+     * @param Empresa $empresa
+     * @return View
      */
-    public function show(Empresa $empresa)
+    public function show(Empresa $empresa): View
     {
         return view('empresa.show', compact('empresa'));
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Empresa  $empresa
-     * @return \Illuminate\Http\Response
+     * @param Empresa $empresa
+     * @return View
      */
-    public function edit(Empresa $empresa)
+    public function edit(Empresa $empresa): View
     {
         return view('empresa.edit', compact('empresa'));
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Empresa  $empresa
-     * @return \Illuminate\Http\Response
+     * @param EmpresaRequest $request
+     * @param Empresa $empresa
+     * @return Response
      */
-    public function update(EmpresaRequest $request, Empresa $empresa)
+    public function update(EmpresaRequest $request, Empresa $empresa): Response
     {
         $empresa->update($request->all());
         return redirect()->route('empresas.show', $empresa);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Empresa  $empresa
-     * @return \Illuminate\Http\Response
+     * @param Empresa $empresa
+     * @param Request $request
+     * @return Response
+     * @throws \Exception
      */
-    public function destroy(Empresa $empresa, Request $request)
+    public function destroy(Empresa $empresa, Request $request): Response
     {
         $tipo = $request->tipo;
-        if ($tipo !== 'cliente' && $tipo !== 'fornecedor') {
-            return abort(404);
-        }
+        $this->validaTipo($tipo);
 
         $empresa->delete();
         return redirect()->route('empresas.index', ['tipo' => $tipo]);
+    }
+
+    /**
+     * Verifica se é cliente ou fornecedor
+     *
+     * @param string $tipo
+     */
+    private function validaTipo(string $tipo): void
+    {
+        if ($tipo !== 'cliente' && $tipo !== 'fornecedor') {
+            abort(404);
+        }
     }
 }

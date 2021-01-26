@@ -9,7 +9,7 @@
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
     </div>
-</div>
+</div> 
 <div class="form-group row">
     <label class="col-form-label col-sm-2" for="razao_social">Razão Social</label>
     <div class="col-sm-10">
