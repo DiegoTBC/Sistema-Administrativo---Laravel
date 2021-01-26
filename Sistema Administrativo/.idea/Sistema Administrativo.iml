@@ -112,6 +112,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/ui" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/respect/validation" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kennedytedesco/validation" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/appzcoder/crud-generator" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravelcollective/html" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
