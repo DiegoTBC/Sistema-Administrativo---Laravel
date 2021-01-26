@@ -1,5 +1,20 @@
 @extends('layouts.app')
 
+@section('title')
+    <h1>Editar Produto</h1>
+@endsection
+
+@section('breadcrumb')
+    <li class="breadcrumb-item">
+        <a href="{{ url('/produtos') }}">Listagem Produto</a>
+    </li>
+
+    <li class="breadcrumb-item">
+        <a href="{{ url('/produtos/' . $produto->id . '/edit') }}">Editar Produto</a>
+    </li>
+@endsection
+
+
 @section('content')
     <div class="container-fluid">
         <div class="row">

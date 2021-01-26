@@ -1,4 +1,19 @@
+
 @extends('layouts.app')
+
+@section('title')
+    <h1>Novo Produto</h1>
+@endsection
+
+@section('breadcrumb')
+    <li class="breadcrumb-item">
+        <a href="{{ url('/produtos') }}">Listagem Produto</a>
+    </li>
+
+    <li class="breadcrumb-item">
+        <a href="{{ url('/produtos/create') }}">Novo Produto</a>
+    </li>
+@endsection
 
 @section('content')
     <div class="container-fluid">

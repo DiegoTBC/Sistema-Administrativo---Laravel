@@ -1,5 +1,15 @@
 @extends('layouts.app')
 
+@section('title')
+    <h1>Listagem Produto</h1>
+@endsection
+
+@section('breadcrumb')
+    <li class="breadcrumb-item">
+        <a href="{{ url('/produtos') }}">Listagem Produto</a>
+    </li>
+@endsection
+
 @section('content')
     <div class="container-fluid">
         <div class="row">
