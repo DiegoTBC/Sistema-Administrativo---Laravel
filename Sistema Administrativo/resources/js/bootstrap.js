@@ -40,4 +40,11 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: true
 // });
 
+//js do tema
 require('../adminLTE/dist/js/adminlte');
+
+//plugin de mascara
+require('../adminLTE/plugins/jquery-mask/dist/jquery.mask');
+
+//definição das mascaras
+require('./mascaras');
