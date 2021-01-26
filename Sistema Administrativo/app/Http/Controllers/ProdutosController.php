@@ -110,15 +110,13 @@ class ProdutosController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param Produto $produto
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Produto $produto)
     {
-        Produto::destroy($id);
+        $produto->delete();
 
         return redirect('produtos')->with('flash_message', 'Produto excluido!');
     }
