@@ -1,26 +1,26 @@
 <div class="form-group row {{ $errors->has('descricao') ? 'has-error' : ''}}">
-     <label for="descricao" class="col-form-label col-sm-2">{{ 'Descricao' }}</label>
+     <label for="descricao" class="col-form-label col-sm-2">{{ 'Descricao*' }}</label>
        <div class="col-sm-10">
        <input class="form-control" name="descricao" type="text" id="descricao" value="{{ isset($movimentosfinanceiro->descricao) ? $movimentosfinanceiro->descricao : ''}}" required>
        {!! $errors->first('descricao', '<p class="help-block">:message</p>') !!}
      </div>
 </div>
 <div class="form-group row {{ $errors->has('valor') ? 'has-error' : ''}}">
-     <label for="valor" class="col-form-label col-sm-2">{{ 'Valor' }}</label>
+     <label for="valor" class="col-form-label col-sm-2">{{ 'Valor*' }}</label>
        <div class="col-sm-10">
        <input class="form-control money" name="valor" type="texto" id="valor" value="{{ isset($movimentosfinanceiro->valor) ? $movimentosfinanceiro->valor : ''}}" >
        {!! $errors->first('valor', '<p class="help-block">:message</p>') !!}
      </div>
 </div>
 <div class="form-group row {{ $errors->has('data') ? 'has-error' : ''}}">
-     <label for="data" class="col-form-label col-sm-2">{{ 'Data' }}</label>
+     <label for="data" class="col-form-label col-sm-2">{{ 'Data*' }}</label>
        <div class="col-sm-10">
        <input class="form-control date" name="data" type="text" id="data" value="{{ isset($movimentosfinanceiro->data) ? $movimentosfinanceiro->data : ''}}" required>
        {!! $errors->first('data', '<p class="help-block">:message</p>') !!}
      </div>
 </div>
 <div class="form-group row {{ $errors->has('tipo') ? 'has-error' : ''}}">
-     <label for="tipo" class="col-form-label col-sm-2">{{ 'Tipo' }}</label>
+     <label for="tipo" class="col-form-label col-sm-2">{{ 'Tipo de Lançamento*' }}</label>
        <div class="col-sm-10">
        <select name="tipo" class="form-control" id="tipo" >
     @foreach (json_decode('{"entrada":"Entrada","Saida":"Saida"}', true) as $optionKey => $optionValue)
@@ -31,7 +31,7 @@
      </div>
 </div>
 <div class="form-group row {{ $errors->has('empresa_id') ? 'has-error' : ''}}">
-     <label for="empresa_id" class="col-form-label col-sm-2">{{ 'Empresa Id' }}</label>
+     <label for="empresa_id" class="col-form-label col-sm-2">{{ 'Empresa*' }}</label>
        <div class="col-sm-10">
            <select class="form-control" name="empresa_id" id="empresa-ajax" required></select>
             {!! $errors->first('empresa_id', '<p class="help-block">:message</p>') !!}
