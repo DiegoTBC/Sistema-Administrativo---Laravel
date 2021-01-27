@@ -23,3 +23,4 @@ Route::resource('empresas', 'EmpresaController');
 Route::resource('produtos', 'ProdutosController');
 
 Route::resource('produtos', 'ProdutosController');
+Route::resource('users', 'UsersController');
