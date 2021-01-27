@@ -89,26 +89,18 @@ class MovimentosFinanceirosController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param MovimentoFinaneiroRequest $request
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(Request $request, $id)
+    public function update(MovimentoFinaneiroRequest $request, $id)
     {
-        $this->validate($request, [
-			'descricao' => 'required|string|max:255',
-			'data' => 'required',
-			'empresa_id' => 'required'
-		]);
         $requestData = $request->all();
-
         $movimentosfinanceiro = MovimentosFinanceiro::findOrFail($id);
         $movimentosfinanceiro->update($requestData);
 
-        return redirect('movimentos-financeiros')->with('flash_message', 'MovimentosFinanceiro updated!');
+        return redirect('movimentos-financeiros')->with('flash_message', 'Movimento Financeiro Atualizado!');
     }
 
     /**

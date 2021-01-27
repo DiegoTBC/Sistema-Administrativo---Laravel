@@ -40,7 +40,7 @@
                                     <tr>
                                         <th>ID</th><td>{{ $movimentosfinanceiro->id }}</td>
                                     </tr>
-                                    <tr><th> Descricao </th><td> {{ $movimentosfinanceiro->descricao }} </td></tr><tr><th> Valor </th><td> {{ $movimentosfinanceiro->valor }} </td></tr><tr><th> Data </th><td> {{ $movimentosfinanceiro->data }} </td></tr>
+                                    <tr><th> Descricao </th><td> {{ $movimentosfinanceiro->descricao }} </td></tr><tr><th> Valor </th><td> {{ numero_iso_para_br($movimentosfinanceiro->valor) }} </td></tr><tr><th> Data </th><td> {{ data_iso_para_br($movimentosfinanceiro->data) }} </td></tr>
                                 </tbody>
                             </table>
                         </div>

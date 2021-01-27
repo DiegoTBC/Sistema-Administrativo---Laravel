@@ -41,7 +41,7 @@ class MovimentoFinaneiroRequest extends FormRequest
     public function validationData()
     {
         $campos = $this->all();
-        $campos['valor'] = str_replace(['.',','], ['','.'], $campos['valor']);
+        $campos['valor'] = numero_br_para_iso($campos['valor']);
         $campos['data'] = data_br_para_iso($campos['data']);
 
         $this->replace($campos);
