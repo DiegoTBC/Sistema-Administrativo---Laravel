@@ -34,7 +34,7 @@ class MovimentosFinanceiro extends Model
 
     public static function buscaPorIntervalo(string $inicio, string $fim, int $quantidade = 20)
     {
-        return self::whereBetween('data', [$inicio, $fim])->paginate($quantidade);
+        return self::whereBetween('data', [$inicio, $fim])->with('empresa')->paginate($quantidade);
     }
 
 }

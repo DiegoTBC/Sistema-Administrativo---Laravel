@@ -40,7 +40,10 @@
                                     <tr>
                                         <th>ID</th><td>{{ $movimentosfinanceiro->id }}</td>
                                     </tr>
-                                    <tr><th> Descricao </th><td> {{ $movimentosfinanceiro->descricao }} </td></tr><tr><th> Valor </th><td> {{ numero_iso_para_br($movimentosfinanceiro->valor) }} </td></tr><tr><th> Data </th><td> {{ data_iso_para_br($movimentosfinanceiro->data) }} </td></tr>
+                                    <tr><th> Tipo </th> <td><span class="badge badge-{{$movimentosfinanceiro->tipo === 'entrada' ? 'success' : 'danger'}}">{{ ucfirst($movimentosfinanceiro->tipo)}}</span></td></tr>
+                                    <tr><th> Empresa </th><td>{{ ucfirst($movimentosfinanceiro->empresa->nome)}} ({{ $movimentosfinanceiro->empresa->razao_social}})</td>></tr>
+                                    <tr><th> Descricao </th><td> {{ $movimentosfinanceiro->descricao }} </td></tr>
+                                    <tr><th> Data </th><td> {{ data_iso_para_br($movimentosfinanceiro->data) }} </td></tr>
                                 </tbody>
                             </table>
                         </div>

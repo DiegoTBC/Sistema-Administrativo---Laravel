@@ -54,14 +54,24 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Descricao</th><th>Valor</th><th>Data</th><th>Ações</th>
+                                        <th>#</th>
+                                        <th>Tipo</th>
+                                        <th>Empresa</th>
+                                        <th>Descricao</th>
+                                        <th>Valor</th>
+                                        <th>Data</th>
+                                        <th>Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($movimentosfinanceiros as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->descricao }}</td><td>R$ {{ numero_iso_para_br($item->valor) }}</td><td>{{ data_iso_para_br($item->data) }}</td>
+                                        <td><span class="badge badge-{{$item->tipo === 'entrada' ? 'success' : 'danger'}}">{{ ucfirst($item->tipo)}}</span></td>
+                                        <td>{{ ucfirst($item->empresa->nome)}} ({{ $item->empresa->razao_social}})</td>
+                                        <td>{{ $item->descricao }}</td>
+                                        <td>R$ {{ numero_iso_para_br($item->valor) }}</td>
+                                        <td>{{ data_iso_para_br($item->data) }}</td>
                                         <td>
                                             <a href="{{ url('/movimentos-financeiros/' . $item->id) }}" title="Detalhes MovimentosFinanceiro"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Detalhes</button></a>
                                             <a href="{{ url('/movimentos-financeiros/' . $item->id . '/edit') }}" title="Atualizar MovimentosFinanceiro"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Atualizar</button></a>
