@@ -53,7 +53,7 @@ class EmpresaController extends Controller
      */
     public function show(int $id): View
     {
-        $empresa = Empresa::with(['movimentosEstoque', 'movimentosEstoque.produto'])->findOrFail($id);
+        $empresa = Empresa::buscaPorId($id);
 
         return view('empresa.show', compact('empresa'));
     }

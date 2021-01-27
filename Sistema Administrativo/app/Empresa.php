@@ -25,6 +25,14 @@ class Empresa extends Model
      */
     protected $appends = ['text'];
 
+    public static function buscaPorId(int $id)
+    {
+        return self::with(['movimentosEstoque' => function($query) {
+            $query->latest()->take(3);
+        },
+            'movimentosEstoque.produto'])->findOrFail($id);
+    }
+
     public function movimentosEstoque()
     {
         return $this->hasMany('App\MovimentosEstoque');
