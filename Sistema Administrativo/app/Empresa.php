@@ -14,9 +14,32 @@ class Empresa extends Model
         'nome_contato', 'celular', 'email', 'telefone', 'cep', 'logradouro',
         'bairro', 'cidade', 'estado', 'observacao'];
 
+    /**
+     * Define dados para serialização
+     * @var string[]
+     */
+    protected $visible = ['id', 'text'];
+    /**
+     * Anexa acessor para serialização
+     * @var string[]
+     */
+    protected $appends = ['text'];
+
     public static function todasPorTipo(string $tipo, int $quantidade=10): AbstractPaginator
     {
 
         return self::where('tipo', $tipo)->paginate($quantidade);
+    }
+
+    /**
+     * Cria acessor chamado text para serialização
+     * @return string
+     */
+    public function getTextAttribute()
+    {
+        return sprintf(
+          '%s (%s)',
+          $this->attributes['nome'], $this->attributes['tipo']
+        );
     }
 }
