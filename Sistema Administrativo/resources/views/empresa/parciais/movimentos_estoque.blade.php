@@ -41,7 +41,7 @@
                 </table>
             </div>
             <hr>
-            <form method="POST" action="{{ route('movimentos_estoque.store') }}">
+            <form method="POST" action="">
                 {{ csrf_field() }}
 
                 <input type="hidden" name="empresa_id" value="{{ $empresa->id }}">
