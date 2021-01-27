@@ -31,5 +31,10 @@ class MovimentosFinanceiro extends Model
     {
         return $this->belongsTo('App\Empresa');
     }
-    
+
+    public static function buscaPorIntervalo(string $inicio, string $fim, int $quantidade = 20)
+    {
+        return self::whereBetween('data', [$inicio, $fim])->paginate($quantidade);
+    }
+
 }
