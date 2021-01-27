@@ -40767,10 +40767,6 @@ __webpack_require__(/*! ./mascaras */ "./resources/js/mascaras.js");
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-//.cpf_cnpj
-//.celular
-//.phone
-//.cep
 $('.celular').mask('(99) 99999-9999');
 $('.phone').mask('(99) 9999-9999');
 $('.cep').mask('99999-999');

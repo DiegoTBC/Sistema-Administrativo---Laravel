@@ -8,14 +8,14 @@
 <div class="form-group row {{ $errors->has('valor') ? 'has-error' : ''}}">
      <label for="valor" class="col-form-label col-sm-2">{{ 'Valor' }}</label>
        <div class="col-sm-10">
-       <input class="form-control" name="valor" type="number" id="valor" value="{{ isset($movimentosfinanceiro->valor) ? $movimentosfinanceiro->valor : ''}}" >
+       <input class="form-control money" name="valor" type="texto" id="valor" value="{{ isset($movimentosfinanceiro->valor) ? $movimentosfinanceiro->valor : ''}}" >
        {!! $errors->first('valor', '<p class="help-block">:message</p>') !!}
      </div>
 </div>
 <div class="form-group row {{ $errors->has('data') ? 'has-error' : ''}}">
      <label for="data" class="col-form-label col-sm-2">{{ 'Data' }}</label>
        <div class="col-sm-10">
-       <input class="form-control" name="data" type="date" id="data" value="{{ isset($movimentosfinanceiro->data) ? $movimentosfinanceiro->data : ''}}" required>
+       <input class="form-control date" name="data" type="text" id="data" value="{{ isset($movimentosfinanceiro->data) ? $movimentosfinanceiro->data : ''}}" required>
        {!! $errors->first('data', '<p class="help-block">:message</p>') !!}
      </div>
 </div>

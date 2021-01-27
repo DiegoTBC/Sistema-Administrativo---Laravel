@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
+use App\Http\Requests\MovimentoFinaneiroRequest;
 use App\Models\MovimentosFinanceiro;
 use Illuminate\Http\Request;
 
@@ -51,18 +52,12 @@ class MovimentosFinanceirosController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
+    public function store(MovimentoFinaneiroRequest $request)
     {
-        $this->validate($request, [
-			'descricao' => 'required|string|max:255',
-			'data' => 'required',
-			'empresa_id' => 'required'
-		]);
         $requestData = $request->all();
-        
         MovimentosFinanceiro::create($requestData);
 
-        return redirect('movimentos-financeiros')->with('flash_message', 'MovimentosFinanceiro added!');
+        return redirect('movimentos-financeiros')->with('flash_message', 'Movimento Financeiros adicionado');
     }
 
     /**
@@ -109,7 +104,7 @@ class MovimentosFinanceirosController extends Controller
 			'empresa_id' => 'required'
 		]);
         $requestData = $request->all();
-        
+
         $movimentosfinanceiro = MovimentosFinanceiro::findOrFail($id);
         $movimentosfinanceiro->update($requestData);
 
