@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -57,10 +58,11 @@ class UsersController extends Controller
 			'password' => 'required|string|min:8|confirmed'
 		]);
         $requestData = $request->all();
+        $requestData['password'] = Hash::make($request['password']);
 
         User::create($requestData);
 
-        return redirect('users')->with('flash_message', 'User added!');
+        return redirect('users')->with('flash_message', 'Usuário criado!');
     }
 
     /**
@@ -103,15 +105,16 @@ class UsersController extends Controller
     {
         $this->validate($request, [
 			'name' => 'required|string|max:255',
-			'email' => 'required|string|max:255|unique:users',
+			'email' => 'required|string|max:255',
 			'password' => 'required|string|min:8|confirmed'
 		]);
         $requestData = $request->all();
+        $requestData['password'] = Hash::make($request['password']);
 
         $user = User::findOrFail($id);
         $user->update($requestData);
 
-        return redirect('users')->with('flash_message', 'User updated!');
+        return redirect('users')->with('flash_message', 'Usuário atualizado!');
     }
 
     /**
