@@ -25,6 +25,11 @@ class Empresa extends Model
      */
     protected $appends = ['text'];
 
+    public function movimentosEstoque()
+    {
+        return $this->hasMany('App\MovimentosEstoque');
+    }
+
     public static function todasPorTipo(string $tipo, int $quantidade=10): AbstractPaginator
     {
 
