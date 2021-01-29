@@ -12,8 +12,10 @@ class MovimentosEstoqueObserver
     {
         $saldo = Saldo::ultimoPorEmpresa($movimentosEstoque->empresa_id);
 
+        $valorSaldo = $valor->saldo ?? 0;
+
         $movimentosEstoque->saldo()->create([
-            'valor' => $saldo->valor + ($movimentosEstoque->quantidade * $movimentosEstoque->valor),
+            'valor' => $valorSaldo + ($movimentosEstoque->quantidade * $movimentosEstoque->valor),
             'empresa_id' => $movimentosEstoque->empresa_id
         ]);
     }
