@@ -52,32 +52,39 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Tipo</th>
-                                    <th>Empresa</th>
-                                    <th>Descricao</th>
-                                    <th>Valor</th>
                                     <th>Data</th>
-                                    <th>Ações</th>
+                                    <th>Movimento</th>
+                                    <th>Tipo</th>
+                                    <th>Produto</th>
+                                    <th>Quantidade</th>
+                                    <th>Valor</th>
+                                    <th>Total</th>
+                                    <th>Saldo</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($saldo as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td><span class="badge badge-{{$item->tipo === 'entrada' ? 'success' : 'danger'}}">{{ ucfirst($item->tipo)}}</span></td>
-                                        <td>{{ ucfirst($item->empresa->nome)}} ({{ $item->empresa->razao_social}})</td>
-                                        <td>{{ $item->descricao }}</td>
-                                        <td>R$ {{ numero_iso_para_br($item->valor) }}</td>
-                                        <td>{{ data_iso_para_br($item->created_at) }}</td>
-                                        <td>
-                                            <a href="{{ url('/movimentos-financeiros/' . $item->id) }}" title="Detalhes MovimentosFinanceiro"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Detalhes</button></a>
-                                            <form method="POST" action="{{ url('/movimentos-financeiros' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                {{ method_field('DELETE') }}
-                                                {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete MovimentosFinanceiro" onclick="return confirm(&quot;Tem certeza que deseja excluir?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Excluir</button>
-                                            </form>
-                                        </td>
+                                        <td>{{data_iso_para_br($item->created_at)}}</td>
+
+                                        @if ($item->movimento_type === 'App\MovimentosEstoque')
+                                            <td>Estoque</td>
+                                            <td>{{ucfirst($item->movimento->tipo)}}</td>
+                                            <td>{{$item->movimento->produto->nome}}</td>
+                                            <td>{{$item->movimento->quantidade}}</td>
+                                            <td>{{$item->movimento->valor}}</td>
+                                            <td>R$ {{numero_iso_para_br($item->movimento->quantidade * $item->movimento->valor) }}</td>
+                                            <td>R$ {{numero_iso_para_br($item->valor) }}</td>
+                                        @else
+                                            <td>Financeiro</td>
+                                            <td>{{ucfirst($item->movimento->tipo)}}</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>R$ {{numero_iso_para_br($item->movimento->valor)}}</td>
+                                            <td>R$ {{numero_iso_para_br($item->valor)}}</td>
+                                        @endif
+
                                     </tr>
                                 @endforeach
                                 </tbody>
