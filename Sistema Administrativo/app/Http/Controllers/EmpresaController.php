@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Empresa;
 use App\Http\Requests\EmpresaRequest;
+use App\Saldo;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\Response;
@@ -54,8 +55,9 @@ class EmpresaController extends Controller
     public function show(int $id): View
     {
         $empresa = Empresa::buscaPorId($id);
+        $saldo = Saldo::ultimoPorEmpresa($id);
 
-        return view('empresa.show', compact('empresa'));
+        return view('empresa.show', compact('empresa', 'saldo'));
     }
 
     /**
