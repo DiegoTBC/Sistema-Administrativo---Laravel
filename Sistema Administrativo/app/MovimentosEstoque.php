@@ -18,7 +18,7 @@ class MovimentosEstoque extends Model
 
     public function produto()
     {
-        return $this->belongsTo('App\Models\Produto');
+        return $this->belongsTo('App\Models\Produto')->withTrashed();
     }
 
     /**

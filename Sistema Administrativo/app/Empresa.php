@@ -30,7 +30,10 @@ class Empresa extends Model
         return self::with(['movimentosEstoque' => function($query) {
             $query->latest()->take(3);
         },
-            'movimentosEstoque.produto'])->findOrFail($id);
+            'movimentosEstoque.produto' => function($query) {
+            $query->withTrashed();
+            }])
+            ->findOrFail($id);
     }
 
     public function movimentosEstoque()

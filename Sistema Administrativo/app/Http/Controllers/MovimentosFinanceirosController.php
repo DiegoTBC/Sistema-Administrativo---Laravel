@@ -68,7 +68,10 @@ class MovimentosFinanceirosController extends Controller
      */
     public function show($id)
     {
-        $movimentosfinanceiro = MovimentosFinanceiro::findOrFail($id);
+        $movimentosfinanceiro = MovimentosFinanceiro::with(
+            ['empresa' => function($q) {
+            $q->withTrashed();
+        }])->findOrFail($id);
 
         return view('movimentos-financeiros.show', compact('movimentosfinanceiro'));
     }
