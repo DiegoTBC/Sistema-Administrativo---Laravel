@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Relatorio;
 
+use App\Empresa;
 use App\Http\Controllers\Controller;
+use App\Saldo;
 use Illuminate\Http\Request;
 
 class SaldoEmpresa extends Controller
@@ -13,10 +15,22 @@ class SaldoEmpresa extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(Empresa $empresa, Request $request)
     {
-        $saldo = [];
+        if (!$request->filled('data_inicial') || !$request->filled('data_final')) {
+            return redirect()->route('empresas.relatorios.saldo', [
+                'empresa' =>$empresa,
+                'data_inicial' => (new \DateTime('first day of this month'))->format('d/m/Y'),
+                'data_final' => (new \DateTime('last day of this month'))->format('d/m/Y')
+            ]);
+        }
 
-        return view('empresa.relatorios.saldo', compact('saldo'));
+        $saldo = Saldo::buscaPorIntervalo(
+            $empresa->id,
+            data_br_para_iso($request->data_inicial),
+            data_br_para_iso($request->data_final)
+        );
+
+        return view('empresa.relatorios.saldo', compact('saldo', 'empresa'));
     }
 }

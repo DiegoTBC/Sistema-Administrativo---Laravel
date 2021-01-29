@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    <h1>Relatório de Saldo</h1>
+    <h1>Relatório de Saldo - {{$empresa->nome}}</h1>
 @endsection
 
 @section('breadcrumb')
