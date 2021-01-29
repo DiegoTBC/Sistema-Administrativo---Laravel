@@ -25,7 +25,7 @@ class MovimentosFinanceiro extends Model
      *
      * @var array
      */
-    protected $fillable = ['descricao', 'valor', 'data', 'tipo', 'empresa_id'];
+    protected $fillable = ['descricao', 'valor', 'tipo', 'empresa_id'];
 
     public function empresa()
     {
@@ -34,7 +34,7 @@ class MovimentosFinanceiro extends Model
 
     public static function buscaPorIntervalo(string $inicio, string $fim, int $quantidade = 20)
     {
-        return self::whereBetween('data', [$inicio, $fim])->with('empresa')->paginate($quantidade);
+        return self::whereBetween('created_at', [$inicio, $fim])->with('empresa')->paginate($quantidade);
     }
 
     public function saldo()

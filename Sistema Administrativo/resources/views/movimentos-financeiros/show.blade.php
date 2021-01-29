@@ -24,8 +24,6 @@
                     <div class="card-body">
 
                         <a href="{{ url('/movimentos-financeiros') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <a href="{{ url('/movimentos-financeiros/' . $movimentosfinanceiro->id . '/edit') }}" title="Edit MovimentosFinanceiro"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-
                         <form method="POST" action="{{ url('movimentosfinanceiros' . '/' . $movimentosfinanceiro->id) }}" accept-charset="UTF-8" style="display:inline">
                             {{ method_field('DELETE') }}
                             {{ csrf_field() }}
@@ -43,7 +41,7 @@
                                     <tr><th> Tipo </th> <td><span class="badge badge-{{$movimentosfinanceiro->tipo === 'entrada' ? 'success' : 'danger'}}">{{ ucfirst($movimentosfinanceiro->tipo)}}</span></td></tr>
                                     <tr><th> Empresa </th><td>{{ ucfirst($movimentosfinanceiro->empresa->nome)}} ({{ $movimentosfinanceiro->empresa->razao_social}})</td>></tr>
                                     <tr><th> Descricao </th><td> {{ $movimentosfinanceiro->descricao }} </td></tr>
-                                    <tr><th> Data </th><td> {{ data_iso_para_br($movimentosfinanceiro->data) }} </td></tr>
+                                    <tr><th> Data </th><td> {{ data_iso_para_br($movimentosfinanceiro->created_at) }} </td></tr>
                                 </tbody>
                             </table>
                         </div>

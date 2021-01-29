@@ -26,7 +26,6 @@ class MovimentoFinaneiroRequest extends FormRequest
     {
         return [
             'descricao' => 'required|string|max:255',
-            'data' => 'required|date',
             'valor' => 'required|numeric',
             'tipo' => 'required',
             'empresa_id' => 'required'
@@ -42,7 +41,6 @@ class MovimentoFinaneiroRequest extends FormRequest
     {
         $campos = $this->all();
         $campos['valor'] = numero_br_para_iso($campos['valor']);
-        $campos['data'] = data_br_para_iso($campos['data']);
 
         $this->replace($campos);
         return $campos;
