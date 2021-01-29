@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\MovimentosEstoque;
 use App\Saldo;
+use Illuminate\Support\Facades\DB;
 
 class MovimentosEstoqueObserver
 {
@@ -15,5 +16,17 @@ class MovimentosEstoqueObserver
             'valor' => $saldo->valor + ($movimentosEstoque->quantidade * $movimentosEstoque->valor),
             'empresa_id' => $movimentosEstoque->empresa_id
         ]);
+    }
+
+    public function deleted(MovimentosEstoque $movimentosEstoque)
+    {
+        $saldo = $movimentosEstoque->saldo;
+        $valorMovimento = $movimentosEstoque->quantidade * $movimentosEstoque->valor;
+        Saldo::where('created_at', '>', $saldo->created_at)
+            ->update([
+                'valor' => DB::raw("valor - $valorMovimento")
+            ]);
+
+        $saldo->delete();
     }
 }
