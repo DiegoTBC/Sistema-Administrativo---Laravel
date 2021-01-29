@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Observers\MovimentosEstoqueObserver;
 use Illuminate\Database\Eloquent\Model;
 
 class MovimentosEstoque extends Model
@@ -16,6 +17,15 @@ class MovimentosEstoque extends Model
     public function produto()
     {
         return $this->belongsTo('App\Models\Produto');
+    }
+
+    /**
+     * Configura a relação com o histórico do saldo
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    public function saldo()
+    {
+        return $this->morphOne('App\Saldo', 'movimento');
     }
 
 }
