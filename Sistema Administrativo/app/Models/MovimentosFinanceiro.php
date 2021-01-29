@@ -37,4 +37,9 @@ class MovimentosFinanceiro extends Model
         return self::whereBetween('data', [$inicio, $fim])->with('empresa')->paginate($quantidade);
     }
 
+    public function saldo()
+    {
+        return $this->morphOne('App\Saldo', 'movimento');
+    }
+
 }

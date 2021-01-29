@@ -12,6 +12,8 @@ class Saldo extends Model
 
     public static function ultimoPorEmpresa(int $empresaId)
     {
-        return self::where('empresa_id', $empresaId)->latest()->first();
+        return self::where('empresa_id', $empresaId)
+            ->latest()
+            ->first();
     }
 }
