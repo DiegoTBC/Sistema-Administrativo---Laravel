@@ -14,6 +14,8 @@ class MovimentosEstoque extends Model
 
     protected $fillable = ['produto_id', 'quantidade', 'valor', 'tipo', 'empresa_id'];
 
+    protected $with = ['produto'];
+
     public function produto()
     {
         return $this->belongsTo('App\Models\Produto');
